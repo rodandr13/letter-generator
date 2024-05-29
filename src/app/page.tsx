@@ -1,6 +1,7 @@
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 
+import { GoalBlock } from "@/components/GoalBlock";
 import { Header } from "@/components/Header";
 
 export default function Home() {
@@ -18,9 +19,7 @@ export default function Home() {
             borderBottom: `1px solid #eaecf0`,
           }}
         >
-          <Typography component="h1" variant="h1">
-            Applications
-          </Typography>
+          <Typography variant="h1">Applications</Typography>
           <Button
             size="customSmall"
             color="primary"
@@ -30,6 +29,7 @@ export default function Home() {
           </Button>
         </Stack>
       </Box>
+      <GoalBlock />
     </Container>
   );
 }

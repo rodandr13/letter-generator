@@ -16,6 +16,8 @@ const colors = {
   lightGrayStroke: "#eaecf0",
   white: "#ffffff",
   green: "#087443",
+  greenLight: "#EDFCF2",
+  grayPaper: "#f2f4f7",
 };
 
 export const baseTheme = createTheme({
@@ -42,7 +44,8 @@ export const baseTheme = createTheme({
   typography: {
     fontFamily: `${roboto.style.fontFamily}, Arial, sans-serif`,
     body1: {
-      color: colors.darkGray,
+      color: colors.slateGray,
+      fontSize: "1.125rem",
     },
     h1: {
       fontSize: "3rem",
@@ -51,8 +54,43 @@ export const baseTheme = createTheme({
       letterSpacing: "-0.02rem",
       color: colors.darkGray,
     },
+    h2: {
+      fontSize: "2rem",
+      lineHeight: "2.75rem",
+      fontWeight: 500,
+      letterSpacing: "-0.02rem",
+      color: colors.darkGray,
+    },
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxSizing: "border-box",
+        },
+      },
+      variants: [
+        {
+          props: { variant: "green" },
+          style: {
+            backgroundColor: colors.greenLight,
+            padding: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "2rem",
+            textAlign: "center",
+          },
+        },
+        {
+          props: { variant: "gray" },
+          style: {
+            backgroundColor: colors.grayPaper,
+            padding: "3.375rem",
+          },
+        },
+      ],
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -77,7 +115,7 @@ export const baseTheme = createTheme({
           props: { size: "customLarge" },
           style: {
             fontSize: "1.25rem",
-            padding: "1rem 1rem 1.75rem 1rem",
+            padding: "1rem 1.75rem 1rem 1.75rem",
           },
         },
       ],
