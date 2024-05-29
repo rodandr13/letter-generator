@@ -1,4 +1,9 @@
+import { ReactNode } from "react";
+
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import type { Metadata } from "next";
+
+import { baseTheme } from "@/app/theme/base";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -8,11 +13,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Box sx={{ paddingTop: 4, paddingBottom: 15 }}>
+          <CssBaseline />
+          <ThemeProvider theme={baseTheme}>{children}</ThemeProvider>
+        </Box>
+      </body>
     </html>
   );
 }

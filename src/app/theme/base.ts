@@ -1,12 +1,18 @@
 "use client";
 
-import { Roboto } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
+import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "700"]
+  weight: ["300", "400", "500", "700"],
 });
+
+const colors = {
+  darkGray: "#101828",
+  slateGray: "#667085",
+  lightGray: "#d0d5dd",
+};
 
 export const baseTheme = createTheme({
   breakpoints: {
@@ -18,12 +24,21 @@ export const baseTheme = createTheme({
       xl: 1400,
     },
   },
+  palette: {
+    primary: {
+      main: colors.slateGray,
+      light: colors.lightGray,
+      dark: colors.darkGray,
+    },
+    text: {
+      primary: colors.darkGray,
+      secondary: colors.slateGray,
+    },
+  },
   typography: {
-    // fontSize: 16,
     fontFamily: `${roboto.style.fontFamily}, Arial, sans-serif`,
-    // body1: {
-    //   fontSize: "1rem",
-    // },
+    body1: {
+      color: colors.darkGray,
+    },
   },
 });
-
