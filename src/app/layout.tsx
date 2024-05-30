@@ -4,6 +4,7 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import type { Metadata } from "next";
 
 import { baseTheme } from "@/app/theme/base";
+import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,10 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Box sx={{ paddingTop: 4, paddingBottom: 15 }}>
-          <CssBaseline />
-          <ThemeProvider theme={baseTheme}>{children}</ThemeProvider>
-        </Box>
+        <ThemeProvider theme={baseTheme}>
+          <Box sx={{ paddingTop: 4, paddingBottom: 15 }}>
+            <CssBaseline />
+            <Header />
+            {children}
+          </Box>
+        </ThemeProvider>
       </body>
     </html>
   );

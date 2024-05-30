@@ -1,33 +1,13 @@
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 
 import { GoalBlock } from "@/components/GoalBlock";
-import { Header } from "@/components/Header";
+import { PageTitle } from "@/components/PageTitle";
 
 export default function Home() {
   return (
     <Container>
-      <Header />
-      <Box component="section">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          paddingBottom={2}
-          marginBottom={6}
-          sx={{
-            borderBottom: `1px solid #eaecf0`,
-          }}
-        >
-          <Typography variant="h1">Applications</Typography>
-          <Button
-            size="customSmall"
-            color="primary"
-            startIcon={<AddOutlinedIcon />}
-          >
-            Create New
-          </Button>
-        </Stack>
+      <Box marginBottom={6}>
+        <PageTitle title="Applications" showButton={true} />
       </Box>
       <GoalBlock />
     </Container>

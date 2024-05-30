@@ -4,10 +4,8 @@ import { Button, Paper, Stack, Typography } from "@mui/material";
 import { Indicator } from "@/components/Indicator";
 
 export const GoalBlock = () => {
-  const paper = {};
-
   return (
-    <Paper elevation={0} sx={paper} variant="green">
+    <Paper elevation={0} variant="green">
       <Stack spacing={2} maxWidth="480px" alignItems="center">
         <Typography variant="h2">Hit your goal</Typography>
         <Typography>
