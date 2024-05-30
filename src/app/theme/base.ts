@@ -26,7 +26,7 @@ export const baseTheme = createTheme({
       xs: 0,
       sm: 600,
       md: 900,
-      lg: 1120,
+      lg: 1168,
       xl: 1400,
     },
   },
@@ -74,12 +74,13 @@ export const baseTheme = createTheme({
           props: { variant: "green" },
           style: {
             backgroundColor: colors.greenLight,
-            padding: "1.5rem",
+            padding: "3.375rem",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: "2rem",
             textAlign: "center",
+            borderRadius: "12px",
           },
         },
         {
@@ -98,6 +99,7 @@ export const baseTheme = createTheme({
           backgroundColor: colors.green,
           textTransform: "none",
           borderRadius: "6px",
+          lineHeight: "1rem",
           "&:hover": {
             backgroundColor: alpha(colors.green, 0.8),
           },
@@ -114,7 +116,7 @@ export const baseTheme = createTheme({
         {
           props: { size: "customLarge" },
           style: {
-            fontSize: "1.25rem",
+            fontSize: "1.125rem",
             padding: "1rem 1.75rem 1rem 1.75rem",
           },
         },

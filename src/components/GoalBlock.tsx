@@ -1,5 +1,7 @@
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import { Box, Button, Paper, Stack, Typography } from "@mui/material";
+import { Button, Paper, Stack, Typography } from "@mui/material";
+
+import { Indicator } from "@/components/Indicator";
 
 export const GoalBlock = () => {
   const paper = {};
@@ -20,6 +22,7 @@ export const GoalBlock = () => {
           Create New
         </Button>
       </Stack>
+      <Indicator total={5} active={3} variant="square" orientation="vertical" />
     </Paper>
   );
 };

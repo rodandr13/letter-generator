@@ -21,10 +21,12 @@ export const Header = () => {
         </Stack>
         <Stack direction="row" alignItems="center" gap={3}>
           <Stack direction="row" alignItems="center" gap={2}>
-            <Typography color={theme.palette.text.secondary}>
-              0/5 applications generated
-            </Typography>
-            <Indicator total={5} active={3} />
+            <Indicator
+              total={5}
+              active={3}
+              variant="circle"
+              orientation="horizontal"
+            />
           </Stack>
           <IconLink href="#" variant="home">
             Home
