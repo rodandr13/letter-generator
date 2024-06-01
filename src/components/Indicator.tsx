@@ -1,6 +1,7 @@
 "use client";
 
-import { alpha, Box, Stack, Typography } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import { alpha, Avatar, Box, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 interface Props {
@@ -67,7 +68,21 @@ export const Indicator = ({
       <Typography color={theme.palette.text.secondary}>
         {textContent}
       </Typography>
-      {indicatorContent}
+      {active >= 5 ? (
+        <Avatar
+          sx={{
+            backgroundColor: theme.palette.success.light,
+            width: "1.5rem",
+            height: "1.5rem",
+          }}
+        >
+          <CheckIcon
+            sx={{ color: theme.palette.success.dark, width: "0.875rem" }}
+          />
+        </Avatar>
+      ) : (
+        indicatorContent
+      )}
     </Stack>
   );
 };

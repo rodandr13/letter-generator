@@ -49,6 +49,11 @@ export const baseTheme = createTheme({
       default: colors.white,
       paper: colors.grayPaper,
     },
+    success: {
+      main: colors.greenLight,
+      dark: colors.green,
+      light: colors.greenVeryLight,
+    },
   },
   typography: {
     fontFamily: `${roboto.style.fontFamily}, Arial, sans-serif`,

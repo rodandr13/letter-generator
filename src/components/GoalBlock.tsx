@@ -1,9 +1,15 @@
+"use client";
+
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Button, Paper, Stack, Typography } from "@mui/material";
 
+import { useAppContext } from "@/app/providers/Context";
 import { Indicator } from "@/components/Indicator";
+import { TARGET_GENERATION } from "@/lib/constans";
 
 export const GoalBlock = () => {
+  const { letters } = useAppContext();
+
   return (
     <Paper elevation={0} variant="green">
       <Stack spacing={2} maxWidth="480px" alignItems="center">
@@ -20,7 +26,12 @@ export const GoalBlock = () => {
           Create New
         </Button>
       </Stack>
-      <Indicator total={5} active={3} variant="square" orientation="vertical" />
+      <Indicator
+        total={TARGET_GENERATION}
+        active={letters.length}
+        variant="square"
+        orientation="vertical"
+      />
     </Paper>
   );
 };
