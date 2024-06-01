@@ -45,6 +45,10 @@ export const baseTheme = createTheme({
       primary: colors.darkGray,
       secondary: colors.slateGray,
     },
+    background: {
+      default: colors.white,
+      paper: colors.grayPaper,
+    },
   },
   typography: {
     fontFamily: `${roboto.style.fontFamily}, Arial, sans-serif`,
@@ -145,7 +149,7 @@ export const baseTheme = createTheme({
         root: {
           textTransform: "none",
           borderRadius: "6px",
-          lineHeight: "1rem",
+          lineHeight: "1.5rem",
         },
       },
       variants: [

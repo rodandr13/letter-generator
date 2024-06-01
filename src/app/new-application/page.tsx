@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import {
   Box,
@@ -12,6 +16,9 @@ import { ApplicationGenerateForm } from "@/components/ApplicationGenerateForm";
 import { PageTitle } from "@/components/PageTitle";
 
 export default function Page() {
+  const [text, setText] = useState<string>(
+    "Your personalized job application will appear here..."
+  );
   return (
     <Container>
       <Stack direction="row" spacing={4}>
@@ -24,8 +31,8 @@ export default function Page() {
         <Box flex={1}>
           <Paper elevation={3} variant="gray" sx={{ position: "relative" }}>
             {
-              <Typography paragraph>
-                Your personalized job application will appear here...
+              <Typography paragraph whiteSpace="pre-line">
+                {text}
               </Typography>
             }
             <Button

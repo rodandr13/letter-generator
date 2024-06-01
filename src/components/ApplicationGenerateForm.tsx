@@ -1,11 +1,23 @@
 "use client";
 
+import React, { useState } from "react";
+
 import { FormControl } from "@mui/base";
-import { Box, Button, InputLabel, Stack, TextField } from "@mui/material";
+import CachedOutlinedIcon from "@mui/icons-material/CachedOutlined";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  InputLabel,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import { MAX_LENGTH_DETAILS, MIN_LENGTH_VALID } from "@/lib/constans";
+import { generateText } from "@/lib/generateText";
+import { template } from "@/lib/templates";
 
 const validationSchema = yup.object({
   jobTitle: yup.string().min(MIN_LENGTH_VALID).required(),
@@ -19,6 +31,8 @@ const validationSchema = yup.object({
 });
 
 export const ApplicationGenerateForm = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const formik = useFormik({
     initialValues: {
       jobTitle: "",
@@ -28,9 +42,24 @@ export const ApplicationGenerateForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
+      if (isLoading) return;
+      setIsLoading(true);
+      setTimeout(() => {
+        const letter = generateText(template, values);
+        const letters = JSON.parse(localStorage.getItem("letters") || "[]");
+        letters.push(letter);
+        localStorage.setItem("letters", JSON.stringify(letters));
+        console.log(letters);
+        setIsLoading(false);
+        setIsGenerated(true);
+      }, 100);
     },
   });
+
+  const handleReset = () => {
+    formik.resetForm();
+    setIsGenerated(false);
+  };
 
   return (
     <Box component="form" noValidate onSubmit={formik.handleSubmit}>
@@ -104,15 +133,28 @@ export const ApplicationGenerateForm = () => {
             placeholder="Describe why you are a great fit or paste your bio"
           />
         </FormControl>
-        <Button
-          color="primary"
-          size="customLarge"
-          fullWidth
-          type="submit"
-          disabled={!formik.isValid || !formik.dirty}
-        >
-          Generate Now
-        </Button>
+        {!isGenerated ? (
+          <Button
+            color="primary"
+            size="customLarge"
+            fullWidth
+            type="submit"
+            disabled={!formik.isValid || !formik.dirty}
+          >
+            {isLoading ? <CircularProgress size={24} /> : "Generate Now"}
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            size="large"
+            fullWidth
+            onClick={handleReset}
+            disabled={!formik.isValid || !formik.dirty}
+            startIcon={<CachedOutlinedIcon />}
+          >
+            Try Again
+          </Button>
+        )}
       </Stack>
     </Box>
   );
