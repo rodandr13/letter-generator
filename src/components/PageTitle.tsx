@@ -1,7 +1,9 @@
 import React from "react";
 
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Link as MuiLink, Stack, Typography } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   title: string;
@@ -23,6 +25,8 @@ export const PageTitle = ({ title, showButton = false }: Props) => {
           size="customSmall"
           color="primary"
           startIcon={<AddOutlinedIcon />}
+          component={Link}
+          href={`/new-application`}
         >
           Create New
         </Button>

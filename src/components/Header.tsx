@@ -2,8 +2,7 @@
 
 import { useEffect } from "react";
 
-import { Container, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Container, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { useAppContext } from "@/app/providers/Context";
@@ -13,7 +12,6 @@ import { Logo } from "@/components/Logo";
 import { TARGET_GENERATION } from "@/lib/constans";
 
 export const Header = () => {
-  const theme = useTheme();
   const { letters, setLetters } = useAppContext();
   useEffect(() => {
     setLetters(JSON.parse(localStorage.getItem("letters") || "[]"));
@@ -24,7 +22,7 @@ export const Header = () => {
         <Stack direction="row" justifyContent="space-between">
           <Stack direction="row" alignItems="center" gap={3}>
             <Logo />
-            <IconLink href="#" variant="home">
+            <IconLink href="/" variant="home">
               Home
             </IconLink>
           </Stack>
@@ -37,7 +35,7 @@ export const Header = () => {
                 orientation="horizontal"
               />
             </Stack>
-            <IconLink href="#" variant="home">
+            <IconLink href="/" variant="home">
               Home
             </IconLink>
           </Stack>

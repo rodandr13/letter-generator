@@ -155,6 +155,7 @@ export const ApplicationGenerateForm = () => {
             fullWidth
             onClick={handleReset}
             startIcon={<CachedOutlinedIcon />}
+            href="/new-application"
           >
             Try Again
           </Button>

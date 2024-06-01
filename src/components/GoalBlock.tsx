@@ -2,6 +2,7 @@
 
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Button, Paper, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
 import { useAppContext } from "@/app/providers/Context";
 import { Indicator } from "@/components/Indicator";
@@ -22,6 +23,8 @@ export const GoalBlock = () => {
           size="customLarge"
           color="primary"
           startIcon={<AddOutlinedIcon />}
+          href="/new-application"
+          component={Link}
         >
           Create New
         </Button>

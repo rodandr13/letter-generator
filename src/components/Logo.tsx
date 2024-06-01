@@ -9,7 +9,7 @@ export const Logo = () => {
   };
 
   return (
-    <MuiLink href="#" component={Link} sx={logo}>
+    <MuiLink href="/" component={Link} sx={logo}>
       <Image src="/logo.svg" alt="Logo" width={179} height={48} />
     </MuiLink>
   );
