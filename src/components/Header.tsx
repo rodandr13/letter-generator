@@ -12,9 +12,13 @@ import { Logo } from "@/components/Logo";
 import { TARGET_GENERATION } from "@/lib/constans";
 
 export const Header = () => {
-  const { letters, setLetters } = useAppContext();
+  const { letters, setLetters, isLoadingLetters, setIsLoadingLetters } =
+    useAppContext();
+
   useEffect(() => {
-    setLetters(JSON.parse(localStorage.getItem("letters") || "[]"));
+    const storedLetters = JSON.parse(localStorage.getItem("letters") || "[]");
+    setLetters(storedLetters);
+    setIsLoadingLetters(false);
   }, []);
   return (
     <Container>
@@ -33,6 +37,7 @@ export const Header = () => {
                 active={letters.length}
                 variant="circle"
                 orientation="horizontal"
+                isLoading={isLoadingLetters}
               />
             </Stack>
             <IconLink href="/" variant="home">

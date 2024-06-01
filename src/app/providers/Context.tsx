@@ -17,7 +17,9 @@ interface AppContextType {
   generateValues: DataValues | undefined;
   setGenerateValues: Dispatch<SetStateAction<DataValues | undefined>>;
   resetForm: boolean;
-  setResetForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setResetForm: Dispatch<SetStateAction<boolean>>;
+  isLoadingLetters: boolean;
+  setIsLoadingLetters: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -31,6 +33,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [generateValues, setGenerateValues] = useState<DataValues | undefined>(
     undefined
   );
+  const [isLoadingLetters, setIsLoadingLetters] = useState<boolean>(true);
   const [resetForm, setResetForm] = useState<boolean>(false);
 
   return (
@@ -42,6 +45,8 @@ export const AppContextProvider = ({ children }: Props) => {
         setGenerateValues,
         resetForm,
         setResetForm,
+        isLoadingLetters,
+        setIsLoadingLetters,
       }}
     >
       {children}
