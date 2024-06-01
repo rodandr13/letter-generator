@@ -15,6 +15,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { useAppContext } from "@/app/providers/Context";
 import { MAX_LENGTH_DETAILS, MIN_LENGTH_VALID } from "@/lib/constans";
 import { generateText } from "@/lib/generateText";
 import { template } from "@/lib/templates";
@@ -31,6 +32,7 @@ const validationSchema = yup.object({
 });
 
 export const ApplicationGenerateForm = () => {
+  const { setGenerateValues, setResetForm } = useAppContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const formik = useFormik({
@@ -52,6 +54,7 @@ export const ApplicationGenerateForm = () => {
         console.log(letters);
         setIsLoading(false);
         setIsGenerated(true);
+        setGenerateValues(values);
       }, 100);
     },
   });
@@ -59,6 +62,8 @@ export const ApplicationGenerateForm = () => {
   const handleReset = () => {
     formik.resetForm();
     setIsGenerated(false);
+    setGenerateValues(undefined);
+    setResetForm(true);
   };
 
   return (
@@ -149,7 +154,6 @@ export const ApplicationGenerateForm = () => {
             size="large"
             fullWidth
             onClick={handleReset}
-            disabled={!formik.isValid || !formik.dirty}
             startIcon={<CachedOutlinedIcon />}
           >
             Try Again
