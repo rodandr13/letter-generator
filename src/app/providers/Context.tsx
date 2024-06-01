@@ -6,6 +6,7 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -20,6 +21,7 @@ interface AppContextType {
   setResetForm: Dispatch<SetStateAction<boolean>>;
   isLoadingLetters: boolean;
   setIsLoadingLetters: Dispatch<SetStateAction<boolean>>;
+  deleteLetter: (index: number) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -36,6 +38,18 @@ export const AppContextProvider = ({ children }: Props) => {
   const [isLoadingLetters, setIsLoadingLetters] = useState<boolean>(true);
   const [resetForm, setResetForm] = useState<boolean>(false);
 
+  useEffect(() => {
+    const storedLetters = JSON.parse(localStorage.getItem("letters") || "[]");
+    setLetters(storedLetters);
+    setIsLoadingLetters(false);
+  }, []);
+
+  const deleteLetter = (index: number) => {
+    const updatedLetters = letters.filter((_, i) => i !== index);
+    setLetters(updatedLetters);
+    localStorage.setItem("letters", JSON.stringify(updatedLetters));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +61,7 @@ export const AppContextProvider = ({ children }: Props) => {
         setResetForm,
         isLoadingLetters,
         setIsLoadingLetters,
+        deleteLetter,
       }}
     >
       {children}

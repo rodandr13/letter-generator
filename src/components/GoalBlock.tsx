@@ -9,7 +9,7 @@ import { Indicator } from "@/components/Indicator";
 import { TARGET_GENERATION } from "@/lib/constans";
 
 export const GoalBlock = () => {
-  const { letters } = useAppContext();
+  const { letters, isLoadingLetters } = useAppContext();
 
   return (
     <Paper elevation={0} variant="green">
@@ -34,6 +34,7 @@ export const GoalBlock = () => {
         active={letters.length}
         variant="square"
         orientation="vertical"
+        isLoading={isLoadingLetters}
       />
     </Paper>
   );

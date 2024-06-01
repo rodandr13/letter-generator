@@ -1,3 +1,7 @@
+"use client";
+
+import React from "react";
+
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import {
@@ -10,12 +14,24 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import { useAppContext } from "@/app/providers/Context";
+
 interface Props {
   letter: string;
+  index: number;
 }
 
-export const LetterCard = ({ letter }: Props) => {
+export const LetterCard = ({ letter, index }: Props) => {
   const theme = useTheme();
+  const { deleteLetter } = useAppContext();
+
+  const handleDelete = () => {
+    deleteLetter(index);
+  };
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(letter);
+  };
 
   const letterCard = {
     border: "none",
@@ -49,13 +65,13 @@ export const LetterCard = ({ letter }: Props) => {
         <Typography whiteSpace="pre-line">{letter}</Typography>
       </CardContent>
       <CardActions sx={letterActions}>
-        <Button variant="text">
+        <Button variant="text" onClick={handleDelete}>
           <Stack direction="row" spacing={1}>
             <DeleteOutlinedIcon />
             <Typography fontSize="1rem">Delete</Typography>
           </Stack>
         </Button>
-        <Button variant="text">
+        <Button variant="text" onClick={handleCopy}>
           <Stack direction="row" spacing={1}>
             <Typography fontSize="1rem">Copy to clipboard</Typography>
             <ContentCopyOutlinedIcon />
