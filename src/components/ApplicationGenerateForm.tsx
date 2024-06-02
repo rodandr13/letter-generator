@@ -32,7 +32,7 @@ const validationSchema = yup.object({
 });
 
 export const ApplicationGenerateForm = () => {
-  const { setGenerateValues, setResetForm } = useAppContext();
+  const { addLetter, setGenerateValues, setResetForm } = useAppContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const formik = useFormik({
@@ -48,14 +48,11 @@ export const ApplicationGenerateForm = () => {
       setIsLoading(true);
       setTimeout(() => {
         const letter = generateText(template, values);
-        const letters = JSON.parse(localStorage.getItem("letters") || "[]");
-        letters.push(letter);
-        localStorage.setItem("letters", JSON.stringify(letters));
-        console.log(letters);
+        addLetter(letter);
         setIsLoading(false);
         setIsGenerated(true);
         setGenerateValues(values);
-      }, 100);
+      }, 2000);
     },
   });
 

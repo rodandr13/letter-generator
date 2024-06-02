@@ -22,6 +22,7 @@ interface AppContextType {
   isLoadingLetters: boolean;
   setIsLoadingLetters: Dispatch<SetStateAction<boolean>>;
   deleteLetter: (index: number) => void;
+  addLetter: (letter: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -50,6 +51,12 @@ export const AppContextProvider = ({ children }: Props) => {
     localStorage.setItem("letters", JSON.stringify(updatedLetters));
   };
 
+  const addLetter = (letter: string) => {
+    const updatedLetters = [...letters, letter];
+    setLetters(updatedLetters);
+    localStorage.setItem("letters", JSON.stringify(updatedLetters));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -62,6 +69,7 @@ export const AppContextProvider = ({ children }: Props) => {
         isLoadingLetters,
         setIsLoadingLetters,
         deleteLetter,
+        addLetter,
       }}
     >
       {children}
