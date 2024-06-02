@@ -32,7 +32,8 @@ const validationSchema = yup.object({
 });
 
 export const ApplicationGenerateForm = () => {
-  const { addLetter, setGenerateValues, setResetForm } = useAppContext();
+  const { setIsLoadingGenerate, addLetter, setGenerateValues, setResetForm } =
+    useAppContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const formik = useFormik({
@@ -46,6 +47,7 @@ export const ApplicationGenerateForm = () => {
     onSubmit: (values) => {
       if (isLoading) return;
       setIsLoading(true);
+      setIsLoadingGenerate(true);
       setTimeout(() => {
         const letter = generateText(template, values);
         addLetter(letter);

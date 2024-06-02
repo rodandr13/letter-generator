@@ -19,9 +19,14 @@ import { generateText } from "@/lib/generateText";
 import { template } from "@/lib/templates";
 
 export default function Page() {
-  const { generateValues, resetForm, setResetForm } = useAppContext();
+  const {
+    isLoadingGenerate,
+    setIsLoadingGenerate,
+    generateValues,
+    resetForm,
+    setResetForm,
+  } = useAppContext();
   const [hasGenerated, setHasGenerated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [text, setText] = useState<string>(
     "Your personalized job application will appear here..."
   );
@@ -32,17 +37,13 @@ export default function Page() {
       setResetForm(false);
       return;
     }
-    if (isLoading) return;
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setHasGenerated(true);
-      if (generateValues) {
-        setText(generateText(template, generateValues));
-      } else {
-        setText("Your personalized job application will appear here...");
-      }
-    }, 2000);
+    setIsLoadingGenerate(false);
+    setHasGenerated(true);
+    if (generateValues) {
+      setText(generateText(template, generateValues));
+    } else {
+      setText("Your personalized job application will appear here...");
+    }
   }, [generateValues]);
 
   return (
@@ -56,7 +57,7 @@ export default function Page() {
         </Box>
         <Box flex={1}>
           <Paper elevation={3} variant="gray" sx={{ position: "relative" }}>
-            {isLoading && hasGenerated ? (
+            {isLoadingGenerate && hasGenerated ? (
               <Box
                 sx={{
                   width: 80,

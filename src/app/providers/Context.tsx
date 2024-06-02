@@ -23,6 +23,8 @@ interface AppContextType {
   setIsLoadingLetters: Dispatch<SetStateAction<boolean>>;
   deleteLetter: (index: number) => void;
   addLetter: (letter: string) => void;
+  isLoadingGenerate: boolean;
+  setIsLoadingGenerate: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -38,6 +40,7 @@ export const AppContextProvider = ({ children }: Props) => {
   );
   const [isLoadingLetters, setIsLoadingLetters] = useState<boolean>(true);
   const [resetForm, setResetForm] = useState<boolean>(false);
+  const [isLoadingGenerate, setIsLoadingGenerate] = useState<boolean>(false);
 
   useEffect(() => {
     const storedLetters = JSON.parse(localStorage.getItem("letters") || "[]");
@@ -70,6 +73,8 @@ export const AppContextProvider = ({ children }: Props) => {
         setIsLoadingLetters,
         deleteLetter,
         addLetter,
+        isLoadingGenerate,
+        setIsLoadingGenerate,
       }}
     >
       {children}
